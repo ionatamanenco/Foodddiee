@@ -1,0 +1,80 @@
+<app-admin-panel-side-menu></app-admin-panel-side-menu>
+
+<div class="main-content">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Email" #input>
+  </mat-form-field>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <!-- No Column -->
+      <ng-container matColumnDef="position">
+        <th
+          *matHeaderCellDef
+          class="w-5"
+          mat-header-cell
+          mat-sort-header="position"
+        >
+          No
+        </th>
+        <td *matCellDef="let row; let i = index" class="w-5" mat-cell>
+          {{ i + 1 }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+      <ng-container matColumnDef="firstname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Firstname </th>
+        <td mat-cell *matCellDef="let row"> {{row.firstname}} </td>
+      </ng-container>
+      <ng-container matColumnDef="lastname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Lastname </th>
+        <td mat-cell *matCellDef="let row"> {{row.lastname}} </td>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+        <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+      </ng-container>
+
+      <!-- Roles Column -->
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Roles </th>
+        <td mat-cell *matCellDef="let row"> {{row.role}} </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="commands">
+        <th *matHeaderCellDef class="w-action" mat-header-cell>Actions</th>
+        <td *matCellDef="let row" class="w-action" mat-cell>
+          <button
+            (click)="editUser(row)"
+            color="basic"
+            mat-icon-button
+            title="Edit User"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            color="warn"
+            mat-icon-button
+            title="Delete User"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+</div>

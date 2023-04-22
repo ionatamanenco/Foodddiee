@@ -1,0 +1,5 @@
+name: ffy-backend
+packages:
+- path: db.migration
+- path: ia.ffy.foodforyou
+- path: logger

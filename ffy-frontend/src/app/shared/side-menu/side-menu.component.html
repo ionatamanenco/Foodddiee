@@ -1,0 +1,26 @@
+<div id="btn">
+  <div id="top"></div>
+  <div id="middle"></div>
+  <div id="bottom"></div>
+</div>
+<div id="box">
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <div id="items">
+    <div [routerLink]="['']" class="item">Home</div>
+    <div *ngIf="user">
+      <div [routerLink]="['/user']" class="item">Account</div>
+      <div [routerLink]="['/subscription']" class="item">Subscription</div>
+      <div [routerLink]="['/']" class="item">Questions</div>
+    </div>
+    <div *ngIf="!user">
+      <div [routerLink]="['/login']" class="item">Login</div>
+    </div>
+    <div *ngIf="user">
+      <div (click)="logout()" class="item"><span></span>Logout</div>
+    </div>
+  </div>
+</div>

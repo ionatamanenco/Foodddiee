@@ -1,0 +1,28 @@
+<div class="form-container">
+  <form (ngSubmit)="onSubmit()" [formGroup]="registerForm" class="login-form">
+    <legend><h1>Register</h1></legend>
+    <a [routerLink]="['/login']">Have an account?</a>
+      <br>
+      <br>
+    <mat-form-field appearance="outline">
+      <mat-label> Email</mat-label>
+      <input formControlName="email" matInput type="text" />
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="outline">
+      <mat-label> Password</mat-label>
+      <input formControlName="password" matInput type="password" />
+    </mat-form-field>
+    <ng-container *ngIf="registerStatusError">
+      <h4 class="error-message">{{ validationErrors }}</h4>
+    </ng-container>
+    <button
+      [disabled]="!registerForm.valid"
+      color="primary"
+      mat-raised-button
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>
+</div>
